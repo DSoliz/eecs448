@@ -40,7 +40,7 @@ while True:
 	i += 2*math.pi/60
 	
 	#time interval between each loop run
-	time.sleep(0.1)
+	time.sleep(1)
 	
 	#for quitting pygame window
 	for event in pygame.event.get():
