@@ -42,8 +42,16 @@ def second():
 		second = int(second)
 		
 	return second
-
-
+	
+def run():
+	h = hour()
+	m = minute()
+	s = second()
+	return h + m + s
+	
+def run2():
+	ap = am_pm()
+	return ap
 
 if __name__ == '__main__':
 	h = hour()
