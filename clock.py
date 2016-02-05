@@ -3,46 +3,54 @@ from pygame.locals import *
 import math
 import time
 
+HEIGHT = WIDTH = 400
 
 pygame.init()
-display = pygame.display.set_mode((400,400),0,32)
+display = pygame.display.set_mode((HEIGHT,WIDTH),0,32)
 
 #colors
 BLACK =(0,0,0)
+RED = (255,0,0)
 WHITE =(255,255,255)
 
 #r = desired radius
-r = 200
+r = HEIGHT/2
+
 radius = r*r
 
-#clock center
-center = 200
+#clock center for vector start positions
+center = HEIGHT/2
 
-x = 0.0
-y = 0.0
-i = 0.0
+time_input = 0
 
+sec = time_input * ((2*math.pi)/60)
+
+#need method to draw markers
+
+#infinite loop to run clock
 while True:
-	#clear the display
+	#clear and fill the display
 	display.fill(WHITE)
+
+	#draw markers
+
+	#math function to determine end of vector position
+	y_sec = r*(-math.cos(sec))
+	x_sec = r*(math.sin(sec))
 	
 	#drawing line
-	pygame.draw.line(display, BLACK, (200, 200), (center+x, center+y), 4)
+	pygame.draw.line(display, RED, (center, center), (center+x_sec, center+y_sec), 2)
 	
 	#update display changes
 	pygame.display.update()
 	
-	#math function
-	y = r*(math.sin(i))
-	x = r*(math.cos(i))
+	#increase by 1/60 of revolution AKA 1 second
+	sec += 2*math.pi/60
 	
-	#increase
-	i += 2*math.pi/60
-	
-	#time interval between each loop run
+	#time interval between each loop run set to 1 second
 	time.sleep(1)
 	
-	#for quitting pygame window
+	#for loop used check quit command from pygame window AKA press the X to quit
 	for event in pygame.event.get():
 		if event.type == QUIT:
 			pygame.quit()
